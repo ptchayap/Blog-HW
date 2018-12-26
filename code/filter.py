@@ -19,10 +19,24 @@ class LinearFilter():
     
 
 if __name__ == "__main__":
-    img = cv2.imread(r'E:\Image_Processing\Blog-HW\imageprocessing\image\im.jpeg',0)
-    cv2.imshow('mg',img)
-    cv2.waitKey(0)
-    test = LinearFilter(img,7,11)
-    a = test.boxfilter()
-    cv2.imshow('img',a)
-    cv2.waitKey(0)
+    import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+img = cv2.imread(r'E:\Image_Processing\Blog-HW\image\salt_pepper.png',0)
+
+a = cv2.boxFilter(img,-1,(3,3))
+b = cv2.GaussianBlur(img,(3,3),5)
+c = cv2.medianBlur(img,3)
+plt.subplot(2,2,1)
+plt.imshow(img,cmap='gray')
+plt.title("Original Image")
+plt.subplot(2,2,2)
+plt.imshow(a,cmap='gray')
+plt.title("Result Image from Box Filter")
+plt.subplot(2,2,3)
+plt.imshow(b,cmap='gray')
+plt.title("Result Image from Gaussian Filter")
+plt.subplot(2,2,4)
+plt.imshow(c,cmap='gray')
+plt.title("Result Image from Median Filter")
+plt.show()
